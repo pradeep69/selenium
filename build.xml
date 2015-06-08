@@ -53,6 +53,7 @@
     </path>
     <target name="init">
         <mkdir dir="bin"/>
+		 <echo message="directory created"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
