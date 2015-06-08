@@ -60,26 +60,22 @@
             </fileset>
         </copy>
     </target>
-    <target name="clean">
+     <target name="clean">
         <delete dir="bin"/>
     </target>
-   
+    <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
-    
+    <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac includeantruntime="false" debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
-            <echo message="Hi program compile upto here"/>
-			<src path="src"/>
+            <src path="src"/>
             <classpath refid="selenium.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
    
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
+   
     <target name="seleniumsample">
         <java classname="seleniumsample" failonerror="true" fork="yes">
             <classpath refid="selenium.classpath"/>
